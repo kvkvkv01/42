@@ -1,1 +1,11 @@
-Exam00
+Exam 00
+40
+
+Exam 01
+50
+
+Exam 02
+80
+
+Final Exam
+48
