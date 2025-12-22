@@ -1,0 +1,15 @@
+*.o
+*.a
+*.so
+*.dylib
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.lock
+.nix
+test_program
+test_main.c
+
