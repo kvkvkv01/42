@@ -9,7 +9,4 @@
 *.swo
 *~
 .lock
-.nix
-test_program
-test_main.c
 
