@@ -30,5 +30,5 @@ int	ft_handle_conversion(char specifier, va_list args)
 		return (ft_print_hex_upper(va_arg(args, unsigned int)));
 	else if (specifier == '%')
 		return (ft_print_percent());
-	return (0);
+	return (-2);
 }

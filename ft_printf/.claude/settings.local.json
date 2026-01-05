@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "Bash(make:*)",
+      "Bash(where:*)",
+      "Bash(wsl -e bash -c:*)",
+      "Bash(wsl:*)"
+    ]
+  }
+}

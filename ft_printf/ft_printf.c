@@ -29,7 +29,7 @@ static int	ft_process_conversion(const char *format, int *i, va_list args)
 	result = ft_handle_conversion(format[*i], args);
 	if (result == -1)
 		return (-1);
-	if (result == 0)
+	if (result == -2)
 		result = ft_handle_unknown_specifier(format[*i]);
 	return (result);
 }
