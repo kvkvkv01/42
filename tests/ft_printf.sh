@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Force unbuffered output
+exec 1>/dev/tty 2>/dev/tty
+
 # Check if we're in the right directory
 if [[ ! -f "Makefile" ]] && [[ ! -f "libftprintf.a" ]]; then
     echo "Error: Run this script from your ft_printf directory"
