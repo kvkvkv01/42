@@ -24,7 +24,7 @@
 - `man 2 read`, `man malloc`, and POSIX file descriptor docs.  
 - Articles on C static storage duration and buffer management.  
 - Project subject PDF and 42 intranet guidance.  
-- AI usage: GitHub Copilot CLI was used to draft boilerplate code, Makefile, and this README; all logic and wording were reviewed and adjusted manually.
+
 
 ## Algorithm
 The function keeps a static stash of unread data, appending new `read` chunks until a newline or EOF is encountered. It slices and returns the next line, then trims the stash to retain only remaining data; the bonus version tracks a linked list keyed by file descriptor to preserve independent stashes while using a single static head pointer. This approach minimizes reads, avoids global variables, and frees intermediate buffers to prevent leaks.

@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wagyu <wagyu@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   */
+/*   Created: 2026/01/07 12:00:00 by wagyu             #+#    #+#             */
+/*   Updated: 2026/01/07 12:00:00 by wagyu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	len;
+	size_t	i;
 
+	i = 0;
 	if (!s)
 		return (0);
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	while (s[i])
+		i++;
+	return (i);
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -22,61 +34,94 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)s);
 		s++;
 	}
-	if (c == '\0')
+	if ((char)c == '\0')
 		return ((char *)s);
 	return (NULL);
 }
 
-char	*ft_strjoin_gnl(char *s1, const char *s2)
+int	ft_add_chain(t_chain **lst, t_chain **tail, char *buf)
 {
-	size_t	len1;
-	size_t	len2;
-	char	*res;
-	size_t	i;
+	t_chain	*new_node;
 
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	res = (char *)malloc(len1 + len2 + 1);
-	if (!res)
-		return (free(s1), NULL);
-	i = 0;
-	while (i < len1)
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	while (i - len1 < len2)
-	{
-		res[i] = s2[i - len1];
-		i++;
-	}
-	res[i] = '\0';
-	free(s1);
-	return (res);
+	new_node = malloc(sizeof(t_chain));
+	if (!new_node)
+		return (0);
+	new_node->buf = buf;
+	new_node->next = NULL;
+	if (!*lst)
+		*lst = new_node;
+	else
+		(*tail)->next = new_node;
+	*tail = new_node;
+	return (1);
 }
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+t_list	*get_node(t_list **head, int fd)
 {
-	size_t	i;
-	size_t	slen;
-	char	*res;
+	t_list	*cur;
 
-	if (!s)
-		return (NULL);
-	slen = ft_strlen(s);
-	if (start >= slen)
-		len = 0;
-	if (len > slen - start)
-		len = slen - start;
-	res = (char *)malloc(len + 1);
-	if (!res)
-		return (NULL);
-	i = 0;
-	while (i < len && s[start + i])
+	cur = *head;
+	while (cur)
 	{
-		res[i] = s[start + i];
-		i++;
+		if (cur->fd == fd)
+			return (cur);
+		cur = cur->next;
 	}
-	res[i] = '\0';
-	return (res);
+	cur = malloc(sizeof(t_list));
+	if (!cur)
+		return (NULL);
+	cur->fd = fd;
+	cur->stash = NULL;
+	cur->next = *head;
+	*head = cur;
+	return (cur);
+}
+
+static void	ft_copy_chain(char *str, t_chain *lst)
+{
+	t_chain	*tmp;
+	size_t	i;
+	size_t	j;
+
+	i = ft_strlen(str);
+	while (lst)
+	{
+		j = 0;
+		while (lst->buf[j])
+			str[i++] = lst->buf[j++];
+		tmp = lst;
+		lst = lst->next;
+		free(tmp->buf);
+		free(tmp);
+	}
+	str[i] = '\0';
+}
+
+char	*ft_flatten(char *stash, t_chain *lst)
+{
+	char	*str;
+	t_chain	*tmp;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(stash);
+	tmp = lst;
+	while (tmp)
+	{
+		len += ft_strlen(tmp->buf);
+		tmp = tmp->next;
+	}
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	i = -1;
+	if (stash)
+		while (stash[++i])
+			str[i] = stash[i];
+	else
+		i = 0;
+	str[i] = '\0';
+	ft_copy_chain(str, lst);
+	free(stash);
+	return (str);
 }

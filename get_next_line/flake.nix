@@ -1,5 +1,6 @@
 {
-  description = "ft_printf - 42 project development environment";
+  description = "get_next_line - 42 project development environment";
+
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -20,15 +21,20 @@
             gnumake
             valgrind
             gdb
+            norminette
+            clang
+            llvm
           ];
 
+
           shellHook = ''
-            echo "🔧 ft_printf development environment"
+            echo "🔧 get_next_line development environment"
             echo "Available commands:"
-            echo "  make          - Build libftprintf.a"
+            echo "  make          - Build get_next_line.a"
             echo "  make clean    - Remove object files"
             echo "  make fclean   - Remove all build artifacts"
             echo "  make re       - Rebuild from scratch"
+
             echo ""
             echo "Compiler: $(which gcc)"
             echo "Make: $(which make)"
