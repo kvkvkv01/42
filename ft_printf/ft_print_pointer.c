@@ -18,7 +18,7 @@ int	ft_print_pointer(void *ptr)
 	int					count;
 
 	if (!ptr)
-		return (ft_putstr("0x0"));
+		return (ft_putstr("(nil)"));
 	address = (unsigned long long)ptr;
 	count = ft_putstr("0x");
 	if (count == -1)
