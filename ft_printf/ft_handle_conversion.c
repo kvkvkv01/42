@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle_conversion.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caualves <caualves@student.42.rio>         +#+  +:+       +#+        */
+/*   By: caualves <caualves@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/05 19:41:31 by caualves          #+#    #+#             */
-/*   Updated: 2026/01/05 19:41:31 by caualves         ###   ########.fr       */
+/*   Created: 2026/01/10 14:12:33 by caualves          #+#    #+#             */
+/*   Updated: 2026/01/10 14:12:33 by caualves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

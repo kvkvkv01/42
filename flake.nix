@@ -1,5 +1,5 @@
 {
-  description = "ft_printf - 42 project development environment";
+  description = "42 DevShell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -20,18 +20,20 @@
             gnumake
             valgrind
             gdb
+	    norminette
+	    clang
           ];
 
           shellHook = ''
-            echo "🔧 ft_printf development environment"
-            echo "Available commands:"
-            echo "  make          - Build libftprintf.a"
-            echo "  make clean    - Remove object files"
-            echo "  make fclean   - Remove all build artifacts"
-            echo "  make re       - Rebuild from scratch"
+            echo "Welcome to the 42 devShell"
             echo ""
-            echo "Compiler: $(which gcc)"
-            echo "Make: $(which make)"
+            echo "Installed:"
+	    echo " >> gcc: $(gcc --version | head -n 1)"
+	    echo " >> make: $(make --version | head -n 1)"
+            echo " >> valgrind: $(valgrind --version | head -n 1)"
+            echo " >> gdb: $(gdb --version | head -n 1)"
+            echo " >> norminette: $(norminette --version | head -n 1)"
+            echo " >> clang: $(clang --version | head -n 1)"
           '';
         };
       }
