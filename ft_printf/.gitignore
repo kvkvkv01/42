@@ -9,4 +9,6 @@
 *.swo
 *~
 .lock
-
+.claude/
+flake.lock
+flake.nix

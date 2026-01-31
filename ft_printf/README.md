@@ -68,29 +68,15 @@ int main(void)
 
 - [C Variadic Functions](https://en.cppreference.com/w/c/variadic);
 - [printf() Manual](https://man7.org/linux/man-pages/man3/printf.3.html);
-- [stdarg.h Reference](https://en.cppreference.com/w/c/variadic);
-- [Number Base Conversion Algorithms](https://en.wikipedia.org/wiki/Positional_notation).
 
-## Algorithm and Data Structure
+### Conversions
 
-### Algorithm Overview
-
-The `ft_printf` function uses a **parsing-based approach** with a **state machine** pattern:
-
-1. **Format String Parsing**: The function iterates through the format string character by character;
-2. **Conversion Detection**: When a `%` is encountered, the next character determines the conversion type;
-3. **Argument Retrieval**: Variadic macros (`va_arg`) retrieve the appropriate argument type;
-4. **Formatting and Output**: Each conversion handler formats and writes the output.
-
-### Conversion Implementations
-
-- **`%c`**: Direct character output using `write()`;
-- **`%s`**: String output with null pointer handling;
+- **`%c`**: `write()`;
+- **`%s`**: `ft_pustr()`;
 - **`%p`**: Pointer address conversion using `unsigned long long` and hexadecimal base conversion with `0x` prefix;
-- **`%d` / `%i`**: Signed integer conversion using `ft_itoa()` which handles negative numbers;
-- **`%u`**: Unsigned integer conversion using `ft_utoa()`;
+- **`%d` / `%i`**: Signed integer conversion with `ft_itoa()`;
+- **`%u`**: Unsigned integer conversion with `ft_utoa()`;
 - **`%x` / `%X`**: Hexadecimal conversion using recursive base conversion with lowercase/uppercase alphabets;
-- **`%%`**: Literal percent sign output.
 
 
 
