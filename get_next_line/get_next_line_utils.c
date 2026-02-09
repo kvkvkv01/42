@@ -12,78 +12,84 @@
 
 #include "get_next_line.h"
 
-size_t ft_strlen(const char *s) {
-  size_t i;
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-  if (!s)
-    return (0);
-  i = 0;
-  while (s[i])
-    i++;
-  return (i);
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
 
-char *ft_strchr(const char *s, int c) {
-  if (!s)
-    return (NULL);
-  while (*s) {
-    if (*s == (char)c)
-      return ((char *)s);
-    s++;
-  }
-  if ((char)c == '\0')
-    return ((char *)s);
-  return (NULL);
+char	*ft_strchr(const char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
 
-char *ft_strjoin_free(char *s1, char *s2) {
-  char *str;
-  size_t i;
-  size_t j;
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*str;
+	size_t	i;
 
-  if (!s1) {
-    s1 = malloc(1);
-    if (!s1)
-      return (NULL);
-    s1[0] = '\0';
-  }
-  str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-  if (!str)
-    return (free(s1), NULL);
-  i = 0;
-  while (s1[i]) {
-    str[i] = s1[i];
-    i++;
-  }
-  j = 0;
-  while (s2[j])
-    str[i++] = s2[j++];
-  str[i] = '\0';
-  free(s1);
-  return (str);
+	if (!s1)
+	{
+		s1 = malloc(1);
+		if (!s1)
+			return (NULL);
+		s1[0] = '\0';
+	}
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (free(s1), NULL);
+	i = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (*s2)
+		str[i++] = *s2++;
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }
 
-char *ft_substr(char *s, unsigned int start, size_t len) {
-  char *str;
-  size_t i;
-  size_t slen;
+char	*ft_substr(char *s, unsigned int start, size_t len)
+{
+	char	*str;
+	size_t	i;
+	size_t	slen;
 
-  if (!s)
-    return (NULL);
-  slen = ft_strlen(s);
-  if (start >= slen)
-    return (free(s), NULL);
-  if (len > slen - start)
-    len = slen - start;
-  str = malloc(len + 1);
-  if (!str)
-    return (free(s), NULL);
-  i = 0;
-  while (i < len) {
-    str[i] = s[start + i];
-    i++;
-  }
-  str[i] = '\0';
-  free(s);
-  return (str);
+	if (!s)
+		return (NULL);
+	slen = ft_strlen(s);
+	if (start >= slen)
+		return (free(s), NULL);
+	if (len > slen - start)
+		len = slen - start;
+	str = malloc(len + 1);
+	if (!str)
+		return (free(s), NULL);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = s[start + i];
+		i++;
+	}
+	str[i] = '\0';
+	free(s);
+	return (str);
 }
